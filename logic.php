@@ -1,7 +1,22 @@
-<?php
-    $conn = mysqli_connect("localhost","root", "secret", "blog_data_phpv1");
-
-    if(!$conn){
-        echo "<h3 class='container bg-secondary text-center p-3 text-warning rounded mt-5'>Not able to establish connection</h3>";
+<?php session_start();
+   require("config.php");
+    $_SESSION['message']=array();
+    $_SESSION['alert']='success';
+    if(!empty($_POST)){
+       
+        $title=mysqli_escape_string($conn,$_POST['title']);
+        $content=mysqli_escape_string($conn,$_POST['content']);
+      
+        $query=" INSERT INTO blogs (`blog_title`,`blog_content`) VALUES ('$title','$content')";
+  
+        if(!mysqli_query($conn,$query)){
+            $_SESSION['message']='Something Went Wrong';
+            $_SESSION['alert']='danger';
+        }else{
+            $_SESSION['message']='Blog Inserted';
+            
+        }
+        header("location:index.php");
     }
+
 ?>
