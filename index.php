@@ -1,29 +1,17 @@
-<?php
-    include "logic.php"
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog using php and mysql</title>
-    <!--  bootstrap css -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- my css -->
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body class="bg-dark">
+<?php include("inc/header.php");?>
     <div class="contianer mt-5">
+        <?php 
+            if(isset($_SESSION['message']) && $_SESSION['message']!=''){
+        ?>
+        <div class="alert alert-<?php echo $_SESSION['alert']; ?> col-md-4 m-auto my-2" role="alert">
+            <?php echo $_SESSION['message']; ?>
+        </div>
+        <?php
+            }
+        ?>
         <div class="text-center">
             <a href="create.php" class= "btn btn-outline-light"> + create a new post </a>
         </div>
     </div>
 
-    <!-- bootstrap js -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"></script>
-</body>
-</html>
+<?php include("inc/footer.php") ?>
